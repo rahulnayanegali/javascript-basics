@@ -1,36 +1,48 @@
-
-// Part 1
-function PersonA() {
-	var DOB = 7;
-	var name = 'Rahul'
-	// in Normal Fn invocation this === Global always except Arrow Function
-	// console.log(this) 
-	function age() {
-		console.log(DOB);
-		console.log(name);
-		// console.log(this)
+// case 1
+console.log('###Case 1### ')
+function a() {
+	var age = 29;
+	function b() {
+		console.log(`age of a is ${age}`)
 	}
-
-	// DOB = 10
-	return (age)
+	b()
 }
-let person1 = PersonA()
-console.log(person1)
-person1()
+a()
+// function b(){} along with its lexical scope is closure
 
-// Part 2
-// function PersonB() {
-// 	var weight = 29
+// case 2
+console.log('###Case 2### ')
+function c() {
+	let age = 30;
+	function d() {
+		console.log(`age of c is ${age}`)
+	}
+	return d;
+}
+// here c() gets invoked and stores the return value(d()) in e
+// but along with d(), d()'s lexical scope is also returned in e.
+// e not only has code of d(), also remembers the its lexical scope
+let e = c();
+console.log(e)
+e(); // 30
 
-// 	function PersonA() {
-// 	var DOB = 7;
-// 	var name = 'Rahul'
-// 	// in Normal Fn invocation this === Global always except Arrow Function
-// 	console.log(this) 
-// 		function age() {
-// 			console.log(weight, DOB);
-// 			// console.log(this)
-// 		} age()
-// 	} PersonA()
-// } 
-// PersonB()
+// case 3
+console.log('###case 3###')
+function f() {
+	let first = 'first'
+	function g() {
+		let second = "second"
+		console.log(first, second)
+		function h() {
+			let third = "third"
+			console.log(first, second, third)
+		}
+		return h;
+	}
+	return g;
+}
+// i = g() + access to first variable
+let i = f();
+// j = h() + access to first and second variable
+let j = i();
+j()
