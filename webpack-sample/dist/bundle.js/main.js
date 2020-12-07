@@ -1,0 +1,1 @@
+(()=>{"use strict";let e=document.querySelector("#name"),n=document.querySelector("#age"),o=document.querySelector("#btn");console.log(e),console.log(n),o.addEventListener("click",(function(){e.innerHTML="Anand",n.innerHTML=55}))})();
